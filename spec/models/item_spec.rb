@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item, user_id: @user.id)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品出品機能' do
@@ -32,6 +31,21 @@ RSpec.describe Item, type: :model do
         @item.price = '300.0'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be an integer')
+      end
+      it 'priceが299円以下の場合は登録できない' do
+        @item.price = '299'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
+      end
+      it 'priceが10_000_000円以上の場合は登録できない' do
+        @item.price = '10_000_000'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be an integer')
+      end
+      it 'priceが半角数値以外の文字が含まれている場合は登録できない' do
+        @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'imageが空では登録できない' do
         @item.image = nil
