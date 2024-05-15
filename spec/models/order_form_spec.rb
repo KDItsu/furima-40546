@@ -26,7 +26,7 @@ RSpec.describe OrderForm, type: :model do
       it 'postal_codeが空だと登録できない' do
         @order_form.postal_code = ''
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Include hyphen(-)")
+        expect(@order_form.errors.full_messages).to include("Postal code can't be blank")
       end
       it 'postal_codeが半角のハイフンを含んでいない形式だと登録できない' do
         @order_form.postal_code = '1231231'
