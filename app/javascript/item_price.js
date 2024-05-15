@@ -9,5 +9,3 @@ priceInput.addEventListener("input", () => {
   profitDisplay.innerHTML = price - tax;
 })
 
-
-window.addEventListener("turbo:render", price);
