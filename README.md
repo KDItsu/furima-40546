@@ -31,7 +31,7 @@
 | shipping_date_id   | integer    | null: false |
 | price              | integer    | null: false |
 | user               | references | null: false, foreign_key: true |
-
+<!--user 出品者 -->
 ### Association
 - belongs_to :user
 - has_one :order
@@ -44,7 +44,7 @@
 | ------------------ | ---------- | ----------- |
 | item               | references | null: false, foreign_key: true |
 | user               | references | null: false, foreign_key: true |
-
+<!-- user 購入した人　item購入したもの -->
 ### Association
 
 - belongs_to :user
